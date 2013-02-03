@@ -1,8 +1,14 @@
 [user]
-	name = Fajran Iman Rusadi
-	email = fajran@gmail.com
+name = Fajran Iman Rusadi
+email = fajran@gmail.com
+
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
+branch = auto
+diff = auto
+interactive = auto
+status = auto
+
+[alias]
+cp = cherry-pick
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+

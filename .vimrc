@@ -11,7 +11,6 @@ set ignorecase
 set smartcase
 set incsearch
 set ai
-set guifont=Inconsolata\ Medium\ 12
 set spell
 set mouse=a
 set backspace=2
@@ -30,8 +29,15 @@ if &listchars ==# 'eol:$'
   endif
 endif
 
+" Color scheme
 colo elflord
 if has('gui_running')
     colo evening
+endif
+
+" Font
+set guifont=Inconsolata\ Medium\ 12
+if has('gui_macvim')
+    set guifont=Menlo:h11
 endif
 

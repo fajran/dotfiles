@@ -41,3 +41,14 @@ if has('gui_macvim')
     set guifont=Menlo:h11
 endif
 
+" ConqueTerm
+function! OpenBash()
+    " If the buffer is not empty, split the window
+    if line('$') != 1 || getline(1) != ''
+        split
+    end
+    ConqueTerm bash
+endfunction
+
+map tt :call OpenBash()<CR>
+

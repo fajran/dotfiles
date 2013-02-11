@@ -54,3 +54,5 @@ if has('gui_macvim')
     map tt :call OpenBash()<CR>
 endif
 
+hi SpellBad ctermbg=8 ctermfg=15
+

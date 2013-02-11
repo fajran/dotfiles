@@ -30,7 +30,7 @@ if &listchars ==# 'eol:$'
 endif
 
 " Color scheme
-colo elflord
+colo torte
 if has('gui_running')
     colo evening
 endif

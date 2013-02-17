@@ -50,7 +50,7 @@ function! OpenBash()
     ConqueTerm bash
 endfunction
 
-if has('gui_macvim')
+if has('gui')
     map tt :call OpenBash()<CR>
 endif
 

@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule ".vim/bundle/vim-golang"]
+	path = .vim/bundle/vim-golang
+	url = git://github.com/jnwhiteh/vim-golang.git

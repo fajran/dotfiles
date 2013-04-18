@@ -88,10 +88,6 @@ __contains() {
   return 1
 }
 
-__screen_ps1() {
-  [ ! -z "$STY" ] && echo "(screen) "
-}
-
 #
 # Colorize output
 #
@@ -130,8 +126,18 @@ if __contains $HOSTNAME sangkil mangkus; then
   C2=$Yellow
 fi
 
+__SSH_PS1=
+if [ -n "$SSH_CLIENT" -o -n "$SSH_CONNECTION" -o -n "$SSH_TTY" ]; then
+  __SSH_PS1="(ssh) "
+fi
+
+__SCREEN_PS1=
+if [ ! -z "$STY" ]; then
+  __SCREEN_PS1="(screen) "
+fi
+
 Clock=$'\xe2\x8c\x9a'
-export PS1=$"\n${IBlack}\d ${Clock} \t${Color_Off}\$(__git_ps1)\n\$(__screen_ps1)${C1}\u@\h ${C2}\w${Color_Off}\n$ "
+export PS1=$"\n${IBlack}\d ${Clock} \t${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 
 #

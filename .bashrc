@@ -111,7 +111,7 @@ alias sl=ls   # frequent typo
 alias gk="gitk --all &"
 
 __git_ps1() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (git) \1/"
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (git) \xe2\x8c\xa5 \1/'
 }
 
 
@@ -130,7 +130,8 @@ if __contains $HOSTNAME sangkil mangkus; then
   C2=$Yellow
 fi
 
-export PS1="\n\$(__screen_ps1)${C1}\u@\h ${C2}\w${Color_Off}\$(__git_ps1) ${IBlack}| \d \t |${Color_Off}\n$ "
+Clock=$'\xe2\x8c\x9a'
+export PS1=$"\n${IBlack}\d ${Clock} \t${Color_Off}\$(__git_ps1)\n\$(__screen_ps1)${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 
 #

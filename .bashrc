@@ -136,8 +136,15 @@ if [ ! -z "$STY" ]; then
   __SCREEN_PS1="(screen) "
 fi
 
+__check_error_ps1() {
+  ERR=$1
+  if [ $ERR -ne "0" ]; then
+    echo -e " ${BIRed}Error: $ERR"
+  fi
+}
+
 Clock=$'\xe2\x8c\x9a'
-export PS1=$"\n${IBlack}\d ${Clock} \t${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
+export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 
 #

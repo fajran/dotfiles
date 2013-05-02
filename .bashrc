@@ -139,13 +139,20 @@ fi
 __check_error_ps1() {
   ERR=$1
   if [ $ERR -ne "0" ]; then
-    echo -e " ${BIRed}Error: $ERR"
+    echo -e " ${BIRed}\xe2\x98\xa2 $ERR"
+  fi
+}
+
+__check_jobs_ps1() {
+  RUNNING=$(jobs -r | wc -l)
+  STOPPED=$(jobs -s | wc -l)
+  if [ $RUNNING -gt 0 -o $STOPPED -gt 0 ]; then
+    echo -e " ${IWhite}\xe2\x99\xa8 ${IGreen}$RUNNING${IBlack}+${IYellow}$STOPPED"
   fi
 }
 
 Clock=$'\xe2\x8c\x9a'
-export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
-
+export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)\$(__check_jobs_ps1)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 #
 # Misc

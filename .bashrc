@@ -138,7 +138,8 @@ fi
 
 __CHROOT_PS1=
 if [ -r /etc/debian_chroot ]; then
-  __CHROOT_PS1=$'\xe2\x8a\xa2$(cat /etc/debian_chroot)\xe2\x8a\xa3 '
+  __CHROOT_NAME=$(cat /etc/debian_chroot)
+  __CHROOT_PS1=$'\xe2\x8a\xa2${__CHROOT_NAME}\xe2\x8a\xa3 '
 fi
 
 __check_error_ps1() {

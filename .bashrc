@@ -136,6 +136,11 @@ if [ ! -z "$STY" ]; then
   __SCREEN_PS1="(screen) "
 fi
 
+__CHROOT_PS1=
+if [ -r /etc/debian_chroot ]; then
+  __CHROOT_PS1=$'\xe2\x8a\xa2$(cat /etc/debian_chroot)\xe2\x8a\xa3 '
+fi
+
 __check_error_ps1() {
   ERR=$1
   if [ $ERR -ne "0" ]; then
@@ -152,7 +157,7 @@ __check_jobs_ps1() {
 }
 
 Clock=$'\xe2\x8c\x9a'
-export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)\$(__check_jobs_ps1)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
+export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)\$(__check_jobs_ps1)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${__CHROOT_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 #
 # Misc

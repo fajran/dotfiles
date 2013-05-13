@@ -2,8 +2,8 @@ execute pathogen#infect()
 
 syn on
 set number
-set ts=4
-set sts=4
+set ts=2
+set sts=2
 set expandtab
 set sw=4
 set hls
@@ -19,6 +19,9 @@ set laststatus=2
 set showcmd
 set wildmenu
 nnoremap Y y$
+
+filetype indent on
+filetype plugin on
 
 set list
 

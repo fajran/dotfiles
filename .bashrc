@@ -75,6 +75,15 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 
+OS=`uname -s`
+
+Clock=$'\xe2\x8c\x9a'
+Error="${BIRed}\xe2\x98\xa2"
+
+if [ "$OS" = "Darwin" ]; then
+  Clock="🕙 "
+  Error="❌ "
+fi
 
 #
 # Common functions
@@ -91,7 +100,7 @@ __contains() {
 #
 # Colorize output
 #
-if [ `uname -s` = "Darwin" ]; then
+if [ "$OS" = "Darwin" ]; then
     alias ls="ls -G"
 else
     alias ls="ls --color=auto"
@@ -145,7 +154,7 @@ fi
 __check_error_ps1() {
   ERR=$1
   if [ $ERR -ne "0" ]; then
-    echo -e " ${BIRed}\xe2\x98\xa2 $ERR"
+    echo -e " $Error $ERR"
   fi
 }
 
@@ -157,7 +166,6 @@ __check_jobs_ps1() {
   fi
 }
 
-Clock=$'\xe2\x8c\x9a'
 export PS1=$"\n${IBlack}\d ${Clock} \t\$(__check_error_ps1 \$?)\$(__check_jobs_ps1)${Color_Off}\$(__git_ps1)\n${__SSH_PS1}${__SCREEN_PS1}${__CHROOT_PS1}${C1}\u@\h ${C2}\w${Color_Off}\n$ "
 
 #
@@ -182,7 +190,6 @@ alias ADD_LIB_PATH="export LD_LIBRARY_PATH=\$PWD:\$LD_LIBRARY_PATH"
 alias ADD_PY_PATH="export PYTHONPATH=\$PWD:\$PYTHONPATH"
 alias ADD_PATH="export PATH=\$PWD:\$PATH"
 
-OS=`uname -s`
 if [ $OS == "Darwin" ]; then
   export PATH=$HOME/mac/bin:$PATH
 fi

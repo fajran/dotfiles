@@ -42,6 +42,7 @@ endif
 set guifont=Inconsolata\ Medium\ 11
 if has('gui_macvim')
     set guifont=Menlo:h11
+    set guioptions=T
 endif
 
 " ConqueTerm

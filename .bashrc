@@ -79,10 +79,14 @@ OS=`uname -s`
 
 Clock=$'\xe2\x8c\x9a'
 Error="${BIRed}\xe2\x98\xa2"
+Branch=$'\xe2\x8c\xa5 '
+BackgroundJob=$"\xe2\x99\xa8"
 
 if [ "$OS" = "Darwin" ]; then
   Clock="🕙 "
   Error="❌ "
+  Branch="🌵 "
+  BackgroundJob="☕️ "
 fi
 
 #
@@ -116,7 +120,7 @@ alias sl=ls   # frequent typo
 alias gk="gitk --all &"
 
 __git_ps1() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e $'s/* \(.*\)/ (git) \xe2\x8c\xa5 \\1/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e $"s/* \(.*\)/ (git) ${Branch} \\1/"
 }
 
 
@@ -162,7 +166,7 @@ __check_jobs_ps1() {
   RUNNING=$(jobs -r | wc -l | xargs echo)
   STOPPED=$(jobs -s | wc -l | xargs echo)
   if [ $RUNNING -gt 0 -o $STOPPED -gt 0 ]; then
-    echo -e " ${IWhite}\xe2\x99\xa8 ${IGreen}$RUNNING${IBlack}+${IYellow}$STOPPED"
+    echo -e " ${IWhite}${BackgroundJob} ${IGreen}$RUNNING${IBlack}+${IYellow}$STOPPED"
   fi
 }
 
